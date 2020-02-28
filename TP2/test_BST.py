@@ -11,6 +11,8 @@ class TestBST(unittest.TestCase):
     def setUp(self):
         self.bst = BST()
 
+    #Question 2 :
+
     def test_when_value_for_deleted_node_is_None_should_return_None(self):
         self.assertIsNone(self.bst.delete_node(None))
 
@@ -150,6 +152,43 @@ class TestBST(unittest.TestCase):
         self.assertEqual(self.bst.root.parent.right.value, self.right_value)
         self.assertIsNone(self.bst.root.right)
 
+    #Question 3
+    def test_PathA(self):
+        self.parent_value = 30
+        self.parent_node = node(self.parent_value)
+        self.value = 20
+        self.bst.insert(self.value)
+        self.parent_node.left = self.bst.root
+        self.bst.root.parent = self.parent_node
+        self.bst.delete_node(self.bst.root.parent.left)
+        self.assertIsNone(self.bst.root.parent.left)
+
+    def test_PathB(self):
+        self.parent_value = 30
+        self.parent_node = node(self.parent_value)
+        self.value = 20
+        self.left_value = 15
+        self.bst.insert(self.value)
+        self.bst.insert(self.left_value)
+        self.parent_node.left = self.bst.root
+        self.bst.root.parent = self.parent_node
+        self.bst.delete_node(self.bst.root.parent.left)
+        self.assertEqual(self.bst.root.parent.left.value, self.left_value)
+
+    def test_PathC(self):
+        self.parent_value = 10
+        self.parent_node = node(self.parent_value)
+        self.value = 20
+        self.left_value = 15
+        self.right_value = 25
+        self.bst.insert(self.value)
+        self.bst.insert(self.left_value)
+        self.bst.insert(self.right_value)
+        self.parent_node.right = self.bst.root
+        self.bst.root.parent = self.parent_node
+        self.bst.delete_node(self.bst.root.parent.right)
+        self.assertEqual(self.bst.root.parent.right.value, self.right_value)
+        self.assertIsNone(self.bst.root.right)
 
 if __name__ == '__main__':
     unittest.main()
