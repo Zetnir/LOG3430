@@ -163,6 +163,7 @@ class BST:
 
     # delete a node passing a node
     def delete_node(self, node):
+
         if node == None or self.search(node.value) == None:
             print("Node to be deleted not found in the tree!")
             return None
@@ -310,46 +311,46 @@ def build_nonBTS_tree(tree):
     print(tree.is_bst_satisfied())
 
 
-# pour tester le code
-tree = BST()
-tree1 = build_tree(tree)
+# # pour tester le code
+# tree = BST()
+# tree1 = build_tree(tree)
 
-# BST.print_tree(build_nonBTS_tree(tree))
-# tree1.print_tree()
+# # BST.print_tree(build_nonBTS_tree(tree))
+# # tree1.print_tree()
 
-print("**************")
-print("The height of the Tree1 is :" + str(tree1.height()))
-print("The size of the Tree1 is   :" + str(tree1.size()))
+# print("**************")
+# print("The height of the Tree1 is :" + str(tree1.height()))
+# print("The size of the Tree1 is   :" + str(tree1.size()))
 
-print("***%%%%%%%%%%%%% test search a node Build a non Random small tree*")
-tree2 = BST()
-tree2.insert(7)
-tree2.insert(6)
-tree2.insert(8)
-tree2.insert(12)
-tree2.insert(11)
-tree2.insert(18)
+# print("***%%%%%%%%%%%%% test search a node Build a non Random small tree*")
+# tree2 = BST()
+# tree2.insert(7)
+# tree2.insert(6)
+# tree2.insert(8)
+# tree2.insert(12)
+# tree2.insert(11)
+# tree2.insert(18)
 
-tree2.print_tree()
+# tree2.print_tree()
 
-print("**************")
-print("The height of the Tree2 is :" + str(tree2.height()))
-print("The size of the Tree2 is   :" + str(tree2.size()))
+# print("**************")
+# print("The height of the Tree2 is :" + str(tree2.height()))
+# print("The size of the Tree2 is   :" + str(tree2.size()))
 
-print("Does tree2  satisfy the BST property ? ", tree2.is_bst_satisfied())
+# print("Does tree2  satisfy the BST property ? ", tree2.is_bst_satisfied())
 
-print("***%%%%%%%%%%%%% deleting a node  *")
-print("--deleting the root")
-tree2.delete_value(7)
-# tree2.delete_value(6) #uncomment to test other cases
-# tree2.delete_value(18) #uncomment to test other cases
-# tree2.delete_value(8) #uncomment to test other cases
-# tree2.delete_value(12) #uncomment to test other cases
-tree2.print_tree()
+# print("***%%%%%%%%%%%%% deleting a node  *")
+# print("--deleting the root")
+# tree2.delete_value(7)
+# # tree2.delete_value(6) #uncomment to test other cases
+# # tree2.delete_value(18) #uncomment to test other cases
+# # tree2.delete_value(8) #uncomment to test other cases
+# # tree2.delete_value(12) #uncomment to test other cases
+# tree2.print_tree()
 
-print("the result of the first search 11  is: ", tree2.search(11))
-print("the result of the second search 37 is: ", tree2.search(37))
+# print("the result of the first search 11  is: ", tree2.search(11))
+# print("the result of the second search 37 is: ", tree2.search(37))
 
-print("---------------Reverse the Tree")
-tree2.reversetree()
-tree2.print_tree()
+# print("---------------Reverse the Tree")
+# tree2.reversetree()
+# tree2.print_tree()
