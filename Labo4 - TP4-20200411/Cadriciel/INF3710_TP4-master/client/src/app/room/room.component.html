@@ -1,0 +1,14 @@
+<div id="room" style="text-align: left">
+  <h1> Rooms</h1>
+    <ul style="list-style: none;">
+      roomNo : <li><input type="text" class="form-control col-md-4" #roomNo ></li>
+      hotelNo : <li><input type="text" class="form-control col-md-4" #hotelNo (keyup)="validateHotelNo(hotelNo.value)"></li>
+      <div id="error" class="invalid" *ngIf="invalidHotelPK"> Cet hotel n'existe pas</div>
+      typeRoom : <li><input type="text" class="form-control col-md-4" #typeRoom ></li>
+      price : <li><input type="number" class="form-control col-md-4" #price ></li>
+      <button type="button" class="btn btn-primary" (click)="insertRoom(roomNo.value, hotelNo.value, typeRoom.value, price.value)" [disabled]= "hotelNo.value === '' || invalidHotelPK"> Add Room</button>
+    </ul>
+  </div>
+
+
+

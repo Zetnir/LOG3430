@@ -1,0 +1,15 @@
+
+<div id="hotel" style="text-align: left">
+  <h1> Hotels</h1>
+  <div id="error" class="alert alert-danger" role="alert" *ngIf="duplicateError">
+    Insertion sur une cle primaire qui existe deja
+  </div>
+    <ul style="list-style: none;">
+      hotelNo : <li><input class="form-control col-md-4" #hotelNo></li>
+      hotelName : <li><input class="form-control col-md-4" #hotelName></li>
+      hotelCity : <li><input  class="form-control col-md-4" #hotelCity></li>
+    <li><button type="button" class="btn btn-primary" (click)="insertHotel(hotelNo.value,hotelName.value, hotelCity.value)"> Add Hotel</button></li>
+    </ul>
+   
+  </div>
+  
