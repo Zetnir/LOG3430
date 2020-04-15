@@ -63,46 +63,58 @@ S_SUBJ = "STATE: SUBJECT"
 
 FSM_MAP = (
     #  {'src':, 'dst':, 'condition':, 'callback': },
+
+    # NEW_GROUP -> PRE
     {'src': S_NEW_GROUP,
      'dst': S_PRE,
      'condition': "[A-Za-z|+|-|\d]",
      'callback': T_APPEND_CHAR_PRE},
+    # PRE -> PRE
     {'src': S_PRE,
      'dst': S_PRE,
      'condition': "[A-Za-z|+|-|\d]",
      'callback': T_APPEND_CHAR_PRE},
+    # PRE -> SUBJECT
     {'src': S_PRE,
      'dst': S_SUBJ,
      'condition': "\(",
      'callback': T_SKIP},  # 3
+    # SUBJECT -> SUBJECT
     {'src': S_SUBJ,
      'dst': S_SUBJ,
      'condition': "[^\)]",
      'callback': T_APPEND_CHAR_SUBJ},
+    # SUBJECT -> END_RULE
     {'src': S_SUBJ,
      'dst': S_END_RULE,
      'condition': "\)",
      'callback': T_END_RULE},
+    # END_RULE -> END_GROUP
     {'src': S_END_RULE,
      'dst': S_END_GROUP,
      'condition': "\)",
      'callback': T_END_GROUP},
+    # END_RULE -> OP
     {'src': S_END_RULE,
      'dst': S_OP,
      'condition': "[\&|\|]",
      'callback': T_ADD_OP_NEW_RULE},
+    # END_GROUP -> OP
     {'src': S_END_GROUP,
      'dst': S_OP,
      'condition': "[\&|\|]",
      'callback': T_ADD_GROUP_OP},
+    # OP -> NEW_GROUP
     {'src': S_OP,
      'dst': S_NEW_GROUP,
      'condition': "\(",
      'callback': T_NEW_GROUP},
+    # OP -> PRE
     {'src': S_OP,
      'dst': S_PRE,
      'condition': "[A-Za-z|+|-|\d]",
      'callback': T_APPEND_CHAR_PRE},
+    # SUBJ -> END_RULE
     {'src': S_SUBJ,
      'dst': S_END_RULE,
      'condition': "\)",
@@ -176,7 +188,7 @@ class ApplyRules:
         self.current_state = new_state
         callback(self)
 
-
+'''
 # -------------------------------
 #str = "print(bonjour (log3430())) !"
 str = "print(bonjour log3430)"
@@ -187,3 +199,4 @@ parse = ApplyRules(str)
 parse.run()
 print("----------------------")
 print(parse.current_group)
+'''
