@@ -188,7 +188,7 @@ class ApplyRules:
         self.current_state = new_state
         callback(self)
 
-'''
+
 # -------------------------------
 #str = "print(bonjour (log3430())) !"
 str = "print(bonjour log3430)"
@@ -199,4 +199,3 @@ parse = ApplyRules(str)
 parse.run()
 print("----------------------")
 print(parse.current_group)
-'''
