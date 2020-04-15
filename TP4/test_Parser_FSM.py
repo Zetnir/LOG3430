@@ -77,3 +77,47 @@ class TestParserFSM(unittest.TestCase):
         parse.run()
         print(parse.current_state)
         self.assertEqual(parse.current_state, S_OP)
+
+    def test_when_adding_and_operators_to_value_in_end_rule_state_should_change_to_op(self):
+        test_string = "print(test)&"
+        parse = ApplyRules(test_string)
+        parse.run()
+        print(parse.current_state)
+        self.assertEqual(parse.current_state, S_OP)
+    
+    def test_when_adding_or_operators_to_value_in_end_rule_state_should_change_to_op(self):
+        test_string = "print(test)|"
+        parse = ApplyRules(test_string)
+        parse.run()
+        print(parse.current_state)
+        self.assertEqual(parse.current_state, S_OP)
+
+    def test_when_adding_right_bracket_to_value_in_op_state_should_change_to_new_group(self):
+        test_string = "print(test)|("
+        parse = ApplyRules(test_string)
+        parse.run()
+        print(parse.current_state)
+        self.assertEqual(parse.current_state, S_NEW_GROUP)
+
+    def test_when_adding_letters_to_value_in_op_state_should_change_to_prefix(self):
+        test_string = "print(test)|do"
+        parse = ApplyRules(test_string)
+        parse.run()
+        print(parse.current_group.rule_count)
+        self.assertEqual(parse.current_state, S_PRE)
+    
+
+
+    # EXTRA TESTS
+
+    def test_when_value_has_not_reach_op_state_yet_rule_count_should_be_one(self):
+        test_string = ""
+        parse = ApplyRules(test_string)
+        parse.run()
+        self.assertEqual(parse.current_group.rule_count, 1)
+
+    def test_when_value_reach_an_op_state_rule_count_should_increate_by_one(self):
+        test_string = "print(1)|"
+        parse = ApplyRules(test_string)
+        parse.run()
+        self.assertEqual(parse.current_group.rule_count, 2)
